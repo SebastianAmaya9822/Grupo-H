@@ -3,7 +3,7 @@ html{
 }
 body{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-image: url(Fondoregistro.png);
+    background-image: url('../Assets/Fondoregistro.png');
     background-size: 100%;
 }
 ul{
