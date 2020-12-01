@@ -55,6 +55,17 @@ background-size: 100%;
     font-size: 16px;
 }
 
+.entradapanel{
+    width: 100%;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 1px;
+    border: #283747;
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+}
+
 .cuerpo{
     width: 100%;
     background: #ffffff;
