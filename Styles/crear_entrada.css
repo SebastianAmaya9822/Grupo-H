@@ -57,15 +57,16 @@ background-size: 100%;
     }
 
 .form-registro .boton{
-    width: 30%;
+    width: 20%;
     background: #ffffff;
     border: none;
     padding: 12px;
     color: #283747;
     margin: 16px 0;
-    font-size: 18px;
-    text-shadow: #283747;
+    font-size: 14px;
+    text-shadow: #010f1d;
     font-weight: bold;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 
 
    
