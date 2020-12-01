@@ -1,0 +1,73 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+background-image: url(Fondoregistro.png);
+background-size: 100%;
+}
+
+.form-registro{
+    width: 800px;
+    background: #283747;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 5px;
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+    color: bisque;
+    box-shadow: 7px 10px 50px grey;
+}
+
+.form-registro h3{
+    font-size: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+.entrada{
+    width: 100%;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 16px;
+    border: 1px solid #0000;
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+}
+
+.form-registro p{
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 40px;
+    }
+
+.form-registro a{
+    color: chartreuse;
+    text-decoration: none;
+    }
+
+.form-registro a:hover{
+    color: chartreuse;
+    text-decoration: aqua;
+
+    }
+
+.form-registro .boton{
+    width: 100%;
+    background: #ffffff;
+    border: none;
+    padding: 12px;
+    color: #283747;
+    margin: 16px 0;
+    font-size: 18px;
+    text-shadow: #283747;
+    font-weight: bold;
+
+
+   
+
+}
