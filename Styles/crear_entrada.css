@@ -67,18 +67,17 @@ background-size: 100%;
     text-shadow: #010f1d;
     font-weight: bold;
     transition: color .15s ease-in-out;
+}
 
-    .form-registro .boton2{
-        width: 100%;
-        background: #ffffff;
-        border: none;
-        padding: 8px;
-        color: #283747;
-        margin: 14px 0;
-        font-size: 14px;
-        text-shadow: #010f1d;
-        font-weight: bold;
-        transition: color .15s ease-in-out;
-   
-
+.form-registro .boton2{
+    width: 100%;
+    border: none;
+    background: #ffffff;
+    padding: 8px;
+    color: #283747;
+    margin: 14px 0;
+    font-size: 14px;
+    text-shadow: #010f1d;
+    font-weight: bold;
+    transition: color .15s ease-in-out;
 }
