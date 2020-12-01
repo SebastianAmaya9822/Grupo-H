@@ -3,6 +3,11 @@
     padding:0;
     box-sizing: border-box;
 }
+
+body{
+background-image: url(Fondoregistro.png);
+}
+
 .form-registro{
     width: 450px;
     background: #283747;
@@ -13,6 +18,7 @@
     font-family: 'Arial Narrow';
     font-size: 16px;
     color: bisque;
+    box-shadow: 7px 10px 50px grey;
 }
 
 .form-registro h3{
