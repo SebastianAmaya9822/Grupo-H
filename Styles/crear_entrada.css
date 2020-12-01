@@ -24,6 +24,21 @@ background-size: 100%;
     box-shadow: 7px 10px 50px grey;
 }
 
+.panelderecho{
+    float: left;
+    width: 200px;
+    background: #283747;
+    padding: 20px;
+    margin: auto;
+    margin-left: 50px;
+    margin-top: 30px;
+    border-radius: 5px;
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+    color: bisque;
+    box-shadow: 7px 10px 50px grey;
+}
+
 .form-registro h3{
     font-size: 24px;
     margin-bottom: 24px;
