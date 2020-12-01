@@ -66,7 +66,7 @@ background-size: 100%;
     font-size: 14px;
     text-shadow: #010f1d;
     font-weight: bold;
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: color .15s ease-in-out;
 
 
    
