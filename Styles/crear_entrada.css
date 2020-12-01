@@ -30,10 +30,10 @@ background-size: 100%;
 .entrada{
     width: 65%;
     background: #ffffff;
-    padding: 10px;
+    padding: 9px;
     border-radius: 7px;
-    margin-bottom: 2px;
-    border: 1px solid #0000;
+    margin-bottom: 1px;
+    border: none;
     font-family: 'Arial Narrow';
     font-size: 16px;
 }
