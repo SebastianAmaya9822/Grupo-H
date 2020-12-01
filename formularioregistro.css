@@ -1,0 +1,63 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.form-registro{
+    width: 450px;
+    background: #938324;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 5px;
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+    color: bisque;
+}
+
+.form-registro h3{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.entrada{
+    width: 100%;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16;
+    border: 1px solid #0000;
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+}
+
+.form-registro p{
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 40px;
+    }
+
+.form-registro a{
+    color: chartreuse;
+    text-decoration: none;
+    }
+
+.form-registro a:hover{
+    color: chartreuse;
+    text-decoration: aqua;
+
+    }
+
+.form-registro .boton{
+    width: 100%;
+    background: #ffffff;
+    border: none;
+    padding: 12px;
+    color: aqua;
+    margin: 16px 0;
+    font-size: 14px;
+
+
+   
+
+}
