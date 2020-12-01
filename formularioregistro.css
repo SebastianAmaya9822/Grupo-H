@@ -17,7 +17,8 @@
 
 .form-registro h3{
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    text-align: center;
 }
 .entrada{
     width: 100%;
@@ -56,6 +57,7 @@
     color: #283747;
     margin: 16px 0;
     font-size: 14px;
+    text-shadow: #283747;
 
 
    
