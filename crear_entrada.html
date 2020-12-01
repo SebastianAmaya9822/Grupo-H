@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Crear Entrada</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="Styles\crear_entrada.css">
+    </head>
+
+    <h1>
+        Nueva Entrada
+    </h1>
+
+    <body>
+        <section class="form-registro">
+            <div>
+                <form action="" method="POST">
+                    <input class= "entrada" type="text" placeholder="Titulo Nueva Entrada">
+                    <input class= "boton" type="submit" value="Vista Previa">
+                    <input class= "boton" type="submit" value="Publicar">
+                    <br>
+                    <textarea name="Entrada" id="" cols="90" rows="20"></textarea>
+                </form>
+            </div>
+        </section>
+        
+        <div>
+            <aside class="columna_entrada">
+                <label for="etiquetas">Etiquetas</label>
+                <br>
+                <input type="etiquetas" placeholder="Separe por comas las etiquetas">
+                <br>
+                <label for="fechapublicacion">Fecha de Publicacion</label>
+                <br>
+                <time datetime="">Publicado el _________</time>
+                <br>
+                <label for="url">Url Publicación</label>
+                <br>
+                <input type="url" placeholder="Personalice la url">
+                <br>
+                <label for="habilitarcomentarios">Habilitar Comentarios</label>
+                <br>
+                <input type="radio" name="comentariohabilitado" id="comentariohabilitado">
+                <label for="">Si</label>
+                <br>
+                <input type="radio" name="comentariohabilitado" id="comentarioinhabilitado">
+                <label for="">No</label>
+            </aside>
+
+        </div>
+    </body>
+</html>
