@@ -9,6 +9,17 @@ background-image: url(..\Assets\Fondoregistro.png);
 background-size: 100%;
 }
 
+.nav-bar{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navigation ul li a{
+    color: #283747;
+    font-size: 20px;
+    font-weight: 700;
+}
+
 .form-registro{
     float: left;
     width: 970px;
