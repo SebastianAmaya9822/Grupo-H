@@ -17,7 +17,7 @@ background-size: 100%;
 .navigation ul li a{
     color: #283747;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .form-registro{
