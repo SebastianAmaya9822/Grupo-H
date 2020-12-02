@@ -96,7 +96,7 @@ footer p{
 }
 
 .buscador{
-    margin-top: 50px;
+    margin-top: 5px;
     display:flex;
     flex-wrap: wrap;
 }
@@ -105,6 +105,7 @@ footer p{
     border: none;
     border-bottom: 1px solid #fff;
     width: 100px;
+    margin-right: 20px;
 }
 ::placeholder{
     color: whitesmoke;
@@ -112,10 +113,11 @@ footer p{
 }
 
 .buscador input[type=submit]{
-    margin-left: 20px;
+    margin-right: 20px;
     border-radius: 5px;
     background-color: #6f4e37;
     color: #fff;
+    margin-bottom: 70px;
 }
 
 .navigation ul li a{
