@@ -45,7 +45,7 @@ background-size: 100%;
     text-align: center;
 }
 .busqueda{
-    width: 500%;
+    width: 100%;
     background: #ffffff;
     padding: 8px;
     border-radius: 5px;
@@ -103,7 +103,7 @@ background-size: 100%;
     font-family: 'Arial Narrow';
     background: #ffffff;
     border: none;
-    padding: 50px;
+    padding: 10px;
     color: #283747;
     margin: 14px 0;
     font-size: 14px;
