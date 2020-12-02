@@ -45,7 +45,7 @@ background-size: 100%;
     text-align: center;
 }
 .busqueda{
-    width: 65%;
+    width: 100%;
     background: #ffffff;
     padding: 8px;
     border-radius: 5px;
@@ -53,6 +53,7 @@ background-size: 100%;
     border: none;
     font-family: 'Arial Narrow';
     font-size: 16px;
+    
 }
 
 .entradapanel{
@@ -96,7 +97,7 @@ background-size: 100%;
 
     }
 
-.form-registro .boton{
+.boton{
     width: 17%;
     background: #ffffff;
     border: none;
