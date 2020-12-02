@@ -11,7 +11,7 @@ background-size: 100%;
 
 .form-registro{
     float: left;
-    width: 1000px;
+    width: 970px;
     background: #283747;
     padding: 20px;
     margin: auto;
@@ -30,7 +30,7 @@ background-size: 100%;
     background: #283747;
     padding: 20px;
     margin: auto;
-    margin-left: 50px;
+    margin-left: 30px;
     margin-top: 30px;
     border-radius: 5px;
     font-family: 'Arial Narrow';
