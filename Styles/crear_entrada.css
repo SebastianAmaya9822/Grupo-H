@@ -135,3 +135,15 @@ background-size: 100%;
     font-weight: bold;
     transition: color .15s ease-in-out;
 }
+
+.comentario{
+    width: 100%;
+    background: #ffffff;
+    padding: 8px;
+    border: #283747;
+    border-radius: 5px;
+    margin-bottom: 1px;
+    border: none;
+    font-family: 'Arial Narrow';
+    font-size: 9px;
+}
