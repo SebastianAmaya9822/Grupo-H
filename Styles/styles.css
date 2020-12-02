@@ -124,4 +124,29 @@ footer p{
     font-weight: 700;
 }
 
+.content{
+    margin: 0 300px;
+    display: block;
+}
+.content p{
+    text-align: justify;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 200;
+}
+.comentarios h3{
+    font-size: 25px;
+}
+.comentarios span{
+    font-weight: bold;
+}
+.comentarios p{
+    color: #000;
+    margin-bottom: 30px;
+    display: block;
+}
+.nav-comentarios ul li a{
+    color: white;
+}
+
 
