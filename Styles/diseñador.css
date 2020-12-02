@@ -98,11 +98,11 @@ background-size: 100%;
     }
 
 .boton{
-    width: 50%;
+    width: 100%;
     font-family: 'Arial Narrow';
     background: #ffffff;
     border: none;
-    padding: 8px;
+    padding: 50px;
     color: #283747;
     margin: 14px 0;
     font-size: 14px;
