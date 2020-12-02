@@ -138,11 +138,8 @@ background-size: 100%;
 
 .comentario{
     width: 100%;
-    background: #ffffff;
+    background: #7e3030;
     padding: 8px;
-    border: #283747;
-    border-bottom: #283747;
-    border-color: #283747;
     border-radius: 5px;
     margin-bottom: 1px;
     border: none;
