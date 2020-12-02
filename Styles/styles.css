@@ -11,6 +11,9 @@ ul{
     margin: 0;
     padding: 0;
 }
+a{
+    text-decoration: none;
+}
 
 img{
     width: '100%';
@@ -57,7 +60,6 @@ footer p{
 }
 .nav-bar ul li a{
     margin-top: 10px;
-    text-decoration: none;
     color: #fff;
     font-size: 16px;
 }
@@ -116,5 +118,10 @@ footer p{
     color: #fff;
 }
 
+.navigation ul li a{
+    color: #283747;
+    font-size: 20px;
+    font-weight: 700;
+}
 
 
