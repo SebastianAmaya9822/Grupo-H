@@ -45,15 +45,16 @@ background-size: 100%;
     text-align: center;
 }
 .busqueda{
-    width: 100%;
+    width: 50%;
     background: #ffffff;
     padding: 8px;
     border-radius: 5px;
     margin-bottom: 1px;
     border-bottom: #283747;
-    text-align: right;
+    text-align: center;
     font-family: 'Arial Narrow';
     font-size: 16px;
+    margin: auto;
     
 }
 
