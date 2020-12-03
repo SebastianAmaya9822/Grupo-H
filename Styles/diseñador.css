@@ -41,7 +41,7 @@ box-shadow: inset 0 0 5px yellow;
 transition: .5s; 
 }
 
-input:checked[type="checkbox"]{
+.contenedorpublicacion input:checked ~ .checkmark {
     background: tomato;
     }
 
