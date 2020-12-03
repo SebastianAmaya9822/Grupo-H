@@ -68,9 +68,9 @@ background-size: 100%;
     margin: auto; */
     display: inline-block;
  
-zoom: 2; /* ie7 hack para display:inline-block */
+zoom: 1,5; /* ie7 hack para display:inline-block */
  
-*display: inline;
+/* *display: inline; */
  
 border: solid 2px #d2d2d2;
  
