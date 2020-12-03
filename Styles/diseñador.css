@@ -100,6 +100,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', end
  
 -ms-filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed'); /* ie8 */
  
+
 }
  
 .busqueda input {
@@ -111,7 +112,7 @@ font color: bisque;
  
 .busqueda .searchfield {
  
-background: #fff;
+background: rgb(219, 29, 29);
  
 padding: 6px 6px 6px 8px;
  
