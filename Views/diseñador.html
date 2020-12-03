@@ -20,9 +20,11 @@
         </section>
         <section class="busqueda">
             <div>
-                <input  class="busqueda" type="text" name="Buscar" id="Buscar" placeholder="Buscar Publicación">
-                <input class="boton" type="submit" value="Buscar">
-                <br>
+                <form>
+                    <input  class="busqueda" type="text" name="Buscar" id="Buscar" value="Buscar..." placeholder="Buscar Publicación"  onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />
+                    <input type="button" value="Ir" />
+                    <!-- <input class="boton" type="submit" value="Buscar"> -->
+                </form>
             </div>
         </section>
                 
