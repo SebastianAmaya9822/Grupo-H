@@ -72,9 +72,9 @@ zoom: 1; /* ie7 hack para display:inline-block */
  
 *display: inline;
  
-border: solid 1px #d2d2d2;
+border: solid 2px #d2d2d2;
  
-padding: 8px 20px;
+padding: 8px 30px;
  
 -webkit-border-radius: 2em;
  
