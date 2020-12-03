@@ -124,7 +124,14 @@ background-size: 100%;
     font-weight: bold;
     transition: color .15s ease-in-out;
 }
-
+.titulo-blog{
+    margin-top: 0;
+    font-size: 42px;
+    font-weight: bold;
+    color: #283747;
+    text-align: center;
+    padding-bottom: 10px;
+}
 .form-registro .boton2{
     width: 100%;
     border: none;
