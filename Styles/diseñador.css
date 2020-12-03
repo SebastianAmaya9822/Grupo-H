@@ -4,6 +4,31 @@
     box-sizing: border-box;
 }
 
+.contenedorpublicacion{
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkmark {
+    position: relative;
+    width: 8px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: green;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px yellow;
+    transition: .5s;   
+}
+
 input [type="checkbox"]{
 position: relative;
 width: 80px;
