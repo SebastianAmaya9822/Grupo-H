@@ -352,8 +352,8 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
     float: right;
     padding: 10px 5px;
     margin-top: 4px;
-    margin-right: 10px;
-    background: #ddd;
+    margin-right: 20px;
+    background: bisque;
     font-size: 17px;
     border: none;
     cursor: pointer;
