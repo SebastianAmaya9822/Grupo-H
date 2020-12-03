@@ -90,7 +90,7 @@ box-shadow: 0 1px 0px rgba(0,0,0,.1);
  
 background: #283747;
  
-background: -webkit-gradient(linear, left top, left bottom, from(rgb(214, 8, 8)), to(#ededed));
+background: -webkit-gradient(linear, left top, left bottom, from(#283747), to(#29425c));
  
 background: -moz-linear-gradient(top,  #fff,  #ededed);
  
