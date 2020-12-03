@@ -16,7 +16,8 @@
     -ms-user-select: none;
     user-select: none;
     justify-content: space-between;
-    width: min-content;
+    width: max-content;
+    align-items: center;
 }
 
 /* Hide the browser's default checkbox */
