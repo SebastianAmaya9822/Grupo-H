@@ -17,7 +17,7 @@
     user-select: none;
     justify-content: space-between;
     width: max-content;
-    margin-block-start: auto;
+    margin-left: 50%;
 }
 
 /* Hide the browser's default checkbox */
