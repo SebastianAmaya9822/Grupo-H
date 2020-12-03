@@ -339,7 +339,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
     border: none;
     cursor: pointer;
  
-    height: 8px;
+    height: 40px;
     width: 60px;
     text-shadow: 0 2px 1px grey;
     -webkit-border-radius: 10px;
