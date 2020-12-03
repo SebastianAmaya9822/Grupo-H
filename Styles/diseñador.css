@@ -68,13 +68,13 @@ background-size: 100%;
     margin: auto; */
     display: inline-block;
  
-zoom: 2; /* ie7 hack para display:inline-block */
+zoom: 1; /* ie7 hack para display:inline-block */
  
 *display: inline;
  
 border: solid 1px #d2d2d2;
  
-padding: 3px 5px;
+padding: 8px 20px;
  
 -webkit-border-radius: 2em;
  
@@ -88,7 +88,7 @@ border-radius: 2em;
  
 box-shadow: 0 1px 0px rgba(0,0,0,.1);
  
-background: #f1f1f1;
+background: #283747;
  
 /* background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed)); */
  
@@ -102,7 +102,8 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', end
  
 .searchform input {
  
-font: normal 12px/100% Arial, Helvetica, sans-serif;
+font: normal 12px/100% 'Arial Narrow';
+font color: bisque;
  
 }
  
@@ -138,7 +139,7 @@ color: #fff;
  
 border: solid 1px #494949;
  
-font-size: 11px;
+font-size: 12px;
  
 height: 27px;
  
