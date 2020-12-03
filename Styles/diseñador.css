@@ -329,7 +329,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
       border: 1px solid #ccc;
     }
   }
-  .search-container{
+  .buscarpublicacion{
     float: right;
     padding: 10px 5px;
     margin-top: 4px;
@@ -346,5 +346,17 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
     -moz-border-radius: 20px;
     border-radius: 10px;
     background: #283747;
+        
+}
+.contenedor{
+    float: right;
+    padding: 10px 5px;
+    margin-top: 4px;
+    margin-right: 10px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+
         
 }
