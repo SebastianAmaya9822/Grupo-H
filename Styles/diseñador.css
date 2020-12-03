@@ -16,6 +16,7 @@
     -ms-user-select: none;
     user-select: none;
     justify-content: space-between;
+    width: min-content;
 }
 
 /* Hide the browser's default checkbox */
