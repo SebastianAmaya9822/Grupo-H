@@ -43,7 +43,7 @@
   
   /* When the checkbox is checked, add a blue background */
   .contenedorpublicacion input:checked ~ .checkmark {
-    background-color: bisque;
+    background-color: chocolate;
   }
   
   /* Create the checkmark/indicator (hidden when not checked) */
@@ -64,7 +64,7 @@
     top: 5px;
     width: 5px;
     height: 10px;
-    border: solid white;
+    border: solid bisque;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
