@@ -28,15 +28,12 @@
   
 
 .checkmark {
-    position: relative;
-    width: 8px;
-    height: 4px;
-    -webkit-appearance: none;
-    background: green;
-    outline: none;
-    border-radius: 20px;
-    box-shadow: inset 0 0 5px yellow;
-    transition: .5s;   
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: red; 
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -69,7 +66,7 @@
     transform: rotate(45deg);
   }
 
-input [type="checkbox"]{
+/* input [type="checkbox"]{
 position: relative;
 width: 80px;
 height: 40px;
@@ -102,7 +99,7 @@ input[type="checkbox"]:before{
 input:checked[type="checkbox"]:before{
 left: 40px;
 
-}
+} */
 
 .body{
 background-image: url(..\Assets\Fondoregistro.png);
