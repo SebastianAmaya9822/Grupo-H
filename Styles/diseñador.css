@@ -332,13 +332,12 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
   .search-container{
     float: right;
     padding: 10px 5px;
-    margin-top: 3px;
+    margin-top: 4px;
     margin-right: 10px;
     background: #ddd;
     font-size: 17px;
     border: none;
     cursor: pointer;
-    font-size: 14px;
  
     height: 40px;
     width: 60px;
@@ -347,9 +346,26 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
     -moz-border-radius: 20px;
     border-radius: 10px;
     background: #283747;
+        
+}
+
+.search-container button:hover{
+    float: right;
+    padding: 10px 5px;
+    margin-top: 4px;
+    margin-right: 10px;
+    background: rgb(196, 16, 16);
+    font-size: 10px;
+    border: none;
+    cursor: pointer;
     
-    
-    
-    
-    
+ 
+    height: 40px;
+    width: 60px;
+    text-shadow: 0 2px 1px grey;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 20px;
+    border-radius: 10px;
+    background: #283747;
+        
 }
