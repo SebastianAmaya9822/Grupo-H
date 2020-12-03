@@ -68,13 +68,15 @@ background-size: 100%;
     margin: auto; */
     display: inline-block;
  
+-moz-box-align: center;
+
 zoom: 1,5; /* ie7 hack para display:inline-block */
  
 *display: inline;
  
 border: solid 4px #d2d2d2;
  
-padding: 8px 40px;
+padding: 8px 60px;
  
 -webkit-border-radius: 40px;
  
