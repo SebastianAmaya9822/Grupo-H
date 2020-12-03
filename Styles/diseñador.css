@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+input [type="checkbox"]{
+position: relative;
+width: 20px;
+height: 10px;
+appearance: none;
+}
+
 .body{
 background-image: url(..\Assets\Fondoregistro.png);
 background-size: 100%;
