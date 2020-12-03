@@ -102,7 +102,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', end
  
 .busqueda input {
  
-font: normal 12px/100% 'Arial Narrow';
+font: normal 18px/100% 'Arial Narrow';
 font color: bisque;
  
 }
@@ -139,7 +139,7 @@ color: bisque ;
  
 border: solid 2px #494949;
  
-font-size: 12px;
+font-size: 18px;
  
 height: 27px;
  
