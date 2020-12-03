@@ -36,8 +36,13 @@
     background-color: red; 
 }
 
-/* When the checkbox is checked, add a blue background */
-.contenedorpublicacion input:checked ~ .checkmark {
+//* On mouse-over, add a grey background color */
+.contenedorpublicacion:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .contenedorpublicacion input:checked ~ .checkmark {
     background-color: yellow;
   }
   
