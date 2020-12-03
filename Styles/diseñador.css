@@ -33,17 +33,17 @@
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: red; 
+    background-color: #283747; 
 }
 
 //* On mouse-over, add a grey background color */
 .contenedorpublicacion:hover input ~ .checkmark {
-    background-color: #ccc;
+    background-color: chartreuse;
   }
   
   /* When the checkbox is checked, add a blue background */
   .contenedorpublicacion input:checked ~ .checkmark {
-    background-color: yellow;
+    background-color: bisque;
   }
   
   /* Create the checkmark/indicator (hidden when not checked) */
