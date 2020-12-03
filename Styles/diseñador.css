@@ -290,12 +290,13 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    font-weight: bold;
   }
   
   /* Change the color of links on hover */
   .topnav a:hover {
     background-color: bisque;
-    color: black;
+    color: #283747;
   }
   
   /* Style the "active" element to highlight the current page */
