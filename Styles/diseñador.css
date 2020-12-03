@@ -33,13 +33,13 @@
 .checkmark {
     position: absolute;
     top: 0;
-    right: 10;
+    right: auto;
     height: 18px;
     width: 18px;
     background-color: #283747; 
 }
 
-//* On mouse-over, add a grey background color */
+/* On mouse-over, add a grey background color */
 .contenedorpublicacion:hover input ~ .checkmark {
     background-color: chartreuse;
   }
@@ -66,7 +66,7 @@
     left: 9px;
     top: 5px;
     width: 5px;
-    height: 10px;
+    height: 7px;
     border: solid bisque;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
