@@ -129,6 +129,7 @@ footer p{
 .content{
     margin: 0 300px;
     display: block;
+    float: left;
 }
 .content p{
     text-align: justify;
@@ -238,7 +239,7 @@ footer p{
 }
 .panelcomentario{
     float: left;
-    width: 270px;
+    width: 240px;
     background: #283747;
     padding: 20px;
     margin: auto;
@@ -251,7 +252,7 @@ footer p{
     box-shadow: 7px 10px 50px grey;
 }
 
-.columna_entrada{
+/* .columna_entrada{
     float: left;
     width: 100%;
     border: none;
@@ -263,4 +264,4 @@ footer p{
     text-shadow: #010f1d;
     font-weight: bold;
     transition: color .15s ease-in-out;
-}
+} */
