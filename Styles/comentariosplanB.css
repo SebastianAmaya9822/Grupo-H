@@ -24,7 +24,7 @@ ul {
 
 body {
    font-family: Arial Narrow,  Verdana;
-   background: #dee1e3;
+   background: #283747;
 }
 
 /** ====================
@@ -37,8 +37,9 @@ body {
 
 .comments-container h1 {
    font-size: 36px;
-   color: #283035;
+   color: bisque;
    font-weight: 400;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .comments-container h1 a {
@@ -58,7 +59,7 @@ body {
    content: '';
    width: 2px;
    height: 100%;
-   background: #c7cacb;
+   background: chartreuse;
    position: absolute;
    left: 32px;
    top: 0;
@@ -67,12 +68,12 @@ body {
 .comments-list:after {
    content: '';
    position: absolute;
-   background: #c7cacb;
+   background: chartreuse;
    bottom: 0;
    left: 27px;
    width: 7px;
    height: 7px;
-   border: 3px solid #dee1e3;
+   border: 3px solid chartreuse;
    -webkit-border-radius: 50%;
    -moz-border-radius: 50%;
    border-radius: 50%;
@@ -83,7 +84,7 @@ body {
    content: '';
    width: 60px;
    height: 2px;
-   background: #c7cacb;
+   background: chartreuse;
    position: absolute;
    top: 25px;
    left: -55px;
@@ -118,7 +119,7 @@ body {
    position: relative;
    z-index: 99;
    float: left;
-   border: 3px solid #FFF;
+   border: 3px solid chartreuse;
    -webkit-border-radius: 4px;
    -moz-border-radius: 4px;
    border-radius: 4px;
@@ -165,7 +166,7 @@ body {
    display: block;
    border-width: 10px 12px 10px 0;
    border-style: solid;
-   border-color: transparent #FCFCFC;
+   border-color: transparent bisque;
    top: 8px;
    left: -11px;
 }
@@ -180,9 +181,9 @@ body {
    width: 610px;
 }
 .comment-box .comment-head {
-   background: #FCFCFC;
+   background: bisque;
    padding: 10px 12px;
-   border-bottom: 1px solid #E5E5E5;
+   border-bottom: 1px solid #283747;
    overflow: hidden;
    -webkit-border-radius: 4px 4px 0 0;
    -moz-border-radius: 4px 4px 0 0;
@@ -206,7 +207,7 @@ body {
 }
 
 .comment-box .comment-name {
-   color: #283035;
+   color: #283747;
    font-size: 14px;
    font-weight: 700;
    float: left;
@@ -214,12 +215,12 @@ body {
 }
 
 .comment-box .comment-name a {
-   color: #283035;
+   color: #283747;
 }
 
 .comment-box .comment-head span {
    float: left;
-   color: #999;
+   color: chocolate;
    font-size: 13px;
    position: relative;
    top: 1px;
@@ -229,7 +230,7 @@ body {
    background: #FFF;
    padding: 12px;
    font-size: 15px;
-   color: #595959;
+   color: #283747;
    -webkit-border-radius: 0 0 4px 4px;
    -moz-border-radius: 0 0 4px 4px;
    border-radius: 0 0 4px 4px;
@@ -238,8 +239,8 @@ body {
 .comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #283747;}
 .comment-box .comment-name.by-author:after {
    content: 'autor';
-   background: bisque;
-   color: #283747;
+   background: #283747;
+   color: bisque;
    font-size: 14px;
    padding: 3px 5px;
    font-weight: 700;
