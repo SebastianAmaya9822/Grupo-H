@@ -150,7 +150,7 @@ footer p{
     display: block;
 }
 .nav-comentarios ul li a{
-    
+
     color: red;
 }
 
@@ -235,4 +235,18 @@ footer p{
     cursor: pointer;
 
         
+}
+.panelcomentario{
+    float: left;
+    width: 270px;
+    background: #283747;
+    padding: 20px;
+    margin: auto;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-radius: 5px;
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+    color: bisque;
+    box-shadow: 7px 10px 50px grey;
 }
