@@ -250,3 +250,17 @@ footer p{
     color: bisque;
     box-shadow: 7px 10px 50px grey;
 }
+
+.columna_entrada{
+    float: left;
+    width: 100%;
+    border: none;
+    background: #ffffff;
+    padding: 8px;
+    color: #283747;
+    margin: 14px 0;
+    font-size: 14px;
+    text-shadow: #010f1d;
+    font-weight: bold;
+    transition: color .15s ease-in-out;
+}
