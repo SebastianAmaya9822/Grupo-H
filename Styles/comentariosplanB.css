@@ -1,8 +1,8 @@
 /**
  * Oscuro: #283035
- * Azul: #03658c
+ * Azul: #283747
  * Detalle: #c7cacb
- * Fondo: #dee1e3
+ * Fondo: #bisque
  ----------------------------------*/
  * {
     margin: 0;
@@ -22,7 +22,7 @@ ul {
 }
 
 body {
-   font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
+   font-family: Arial Narrow,  Verdana;
    background: #dee1e3;
 }
 
@@ -234,12 +234,12 @@ body {
    border-radius: 0 0 4px 4px;
 }
 
-.comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #03658c;}
+.comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #283747;}
 .comment-box .comment-name.by-author:after {
    content: 'autor';
-   background: #03658c;
-   color: #FFF;
-   font-size: 12px;
+   background: bisque;
+   color: #283747;
+   font-size: 14px;
    padding: 3px 5px;
    font-weight: 700;
    margin-left: 10px;
