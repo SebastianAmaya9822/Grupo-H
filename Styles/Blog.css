@@ -138,6 +138,8 @@ footer p{
 }
 .comentarios h3{
     font-size: 25px;
+
+
 }
 .comentarios span{
     font-weight: bold;
@@ -148,7 +150,8 @@ footer p{
     display: block;
 }
 .nav-comentarios ul li a{
-    color: white;
+    
+    color: red;
 }
 
 /* Add a black background color to the top navigation bar */
