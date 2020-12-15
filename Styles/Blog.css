@@ -136,6 +136,7 @@ footer p{
     margin-bottom: 30px;
     font-size: 20px;
     font-weight: 200;
+    color: #4b3621;
 }
 .comentarios h3{
     font-size: 25px;
@@ -151,7 +152,7 @@ footer p{
     display: block;
 }
 .nav-comentarios ul li a{
-
+    margin-right: 10px;
     color: red;
 }
 
@@ -251,17 +252,3 @@ footer p{
     color: bisque;
     box-shadow: 7px 10px 50px grey;
 }
-
-/* .columna_entrada{
-    float: left;
-    width: 100%;
-    border: none;
-    background: #ffffff;
-    padding: 8px;
-    color: #283747;
-    margin: 14px 0;
-    font-size: 14px;
-    text-shadow: #010f1d;
-    font-weight: bold;
-    transition: color .15s ease-in-out;
-} */

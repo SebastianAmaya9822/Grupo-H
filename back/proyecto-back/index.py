@@ -1,10 +1,12 @@
+from enum import unique
 from flask import Flask,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from flask_cors import CORS
-
+from datetime import date
+import bcrypt
 app = Flask(__name__)
 CORS(app)
 
@@ -18,88 +20,96 @@ class Usuario(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     nombre=db.Column(db.String(100))
     apellidos=db.Column(db.String(100))
+    nomUsuario=db.Column(db.String(50),unique=True)
     correo=db.Column(db.String(100),unique=True)
     contraseña=db.Column(db.String(100))
+    estado_activacion=db.Column(db.Boolean)
+    fecha_ing=db.Column(db.DateTime)
 
-    def __init__(self, nombre, apellidos,correo,contraseña):
+    def __init__(self, nombre, apellidos,correo,contraseña,nomUsuario,estado_activacion,fecha_ing):
         self.nombre = nombre
         self.apellidos=apellidos
         self.correo = correo
         self.contraseña=contraseña
-
+        self.nomUsuario=nomUsuario
+        self.estado_activacion=estado_activacion
+        self.fecha_ing=fecha_ing
 db.create_all()
 
 class UsuarioSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'nombre', 'apellidos', 'correo' , 'contraseña')
+        fields = ('id', 'nombre', 'apellidos', 'correo' , 'contraseña','nomUsuario','estado_activacion','fecha_ing')
 
 usuario_schema = UsuarioSchema()
 usuarios_schema = UsuarioSchema(many=True)       
 
-class Blog(db.Model):
+class Categoria(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(70))
-    description = db.Column(db.String(100))
-    id_usuario=db.Column(db.Integer,ForeignKey("usuario.id"))
-    usuariop_id=relationship("Usuario",foreign_keys=[id_usuario])
-    def __init__(self, title, description,id_usuario):
-        self.title = title
-        self.description = description
-        self.id_usuario=id_usuario
+    tipo = db.Column(db.Text)
 
-db.create_all()
-
-class BlogSchema(ma.Schema):
-    class Meta:
-        fields = ('id', 'title', 'description' , 'id_usuario')
-
-
-blog_schema = BlogSchema()
-blogs_schema = BlogSchema(many=True)
-
-class Entrada(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(70))
-    content = db.Column(db.String(255))
-    id_usuario=db.Column(db.Integer,ForeignKey("usuario.id"))
-    id_blog=db.Column(db.Integer,ForeignKey("blog.id"))
-    usuario_id=relationship("Usuario",foreign_keys=[id_usuario])
-    blog_id=relationship("Blog",foreign_keys=[id_blog])
-
-    def __init__(self, title, content,id_usuario,id_blog):
-        self.title = title
-        self.content = content
-        self.id_usuario=id_usuario
-        self.id_blog=id_blog
+    def __init__(self, tipo):
+        self.tipo = tipo
 
 db.create_all()
 
 class EntradaSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'title', 'content' , 'id_usuario' , 'id_blog')
+        fields = ('id', 'tipo')
 
 
 entrada_schema = EntradaSchema()
 entradas_schema = EntradaSchema(many=True)
 
+class Blog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(70))
+    cuerpo = db.Column(db.Text)
+    es_publico=db.Column(db.Boolean)
+    fechas_publicacion=db.Column(db.DateTime)
+    id_usuario=db.Column(db.Integer,ForeignKey("usuario.id"))
+    id_categoria=db.Column(db.Integer,ForeignKey("categoria.id"))
+    usuariop_id=relationship("Usuario",foreign_keys=[id_usuario])
+    categoria_id=relationship("Categoria",foreign_keys=[id_categoria])
+    
+    def __init__(self, title, cuerpo,es_publico,fecha_publicacion,id_usuario,id_categoria):
+        self.title = title
+        self.cuerpo = cuerpo
+        self.es_publico=es_publico
+        self.fechas_publicacion=fecha_publicacion
+        self.id_usuario=id_usuario
+        self.id_categoria=id_categoria
+
+db.create_all()
+
+class BlogSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'title', 'cuerpo' , 'es_publico','fecha_publicacion','id_usuario','id_categoria')
+
+
+blog_schema = BlogSchema()
+blogs_schema = BlogSchema(many=True)
+
+
 class Comentarios(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     comentario=db.Column(db.String(200))
     id_usuario=db.Column(db.Integer,ForeignKey("usuario.id"))
-    id_entrada=db.Column(db.Integer,ForeignKey("entrada.id"))
+    id_blog=db.Column(db.Integer,ForeignKey("blog.id"))
+    fecha_publicacion=db.Column(db.Date)
     usuario_id=relationship("Usuario",foreign_keys=[id_usuario])
-    entrada_id=relationship("Entrada",foreign_keys=[id_entrada])
+    blog_id=relationship("Blog",foreign_keys=[id_blog])
 
-    def __init__(self, comentario,id_usuario,id_entrada):
+    def __init__(self, comentario,id_usuario,id_blog,fecha_publicacion):
         self.comentario = comentario
         self.id_usuario=id_usuario
-        self.id_entrada=id_entrada
+        self.id_blog=id_blog
+        self.fecha_publicacion=fecha_publicacion
 
 db.create_all()
 
 class ComentarioSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'comentario' , 'id_usuario' , 'id_entrada')
+        fields = ('id', 'comentario' , 'id_usuario' , 'id_entrada','fecha_publicacion')
 
 
 comentario_schema = ComentarioSchema()
@@ -113,19 +123,31 @@ def crear_usuario():
     nombre=request.json['nombre']
     apellido=request.json['apellido']
     contraseña=request.json['contraseña']
+    nomUsuario=request.json['nomUsuario']
+    print(correo)
+    print(nombre)
+    print(apellido)
+    print(contraseña)
+    print(nomUsuario)
+    sal=bcrypt.gensalt()
+    contraseña=contraseña.encode()
+    hashed = bcrypt.hashpw(contraseña,sal)
+    print(sal,hashed)
+    estado_activacion=False;
+    now = date.today()
     usuario = Usuario.query.filter_by(correo=correo).first()
     if(usuario):
         res={
         'error':'el usuario con ese correo ya ha sido creado'
         }
     else:
-        nuevo_usuario=Usuario(nombre,apellido,correo,contraseña)
+        nuevo_usuario=Usuario(nombre,apellido,correo,hashed,nomUsuario,estado_activacion,now)
         db.session.add(nuevo_usuario)
         db.session.commit()
         res={
             'success':'usuario creado correctamente'
         }
-    return jsonify(res)
+    return jsonify(res) 
 
 @app.route('/usuario/login',methods=["POST"])
 def login_usuario():
@@ -133,7 +155,7 @@ def login_usuario():
     contraseña=request.json['contraseña']
     usuario = Usuario.query.filter_by(correo=correo).one()
     if(usuario):
-        if(usuario.contraseña==contraseña):
+        if(bcrypt.checkpw(contraseña.encode(), usuario.contraseña.encode())):
             res={
             'success':'Bienvenido al Sistema de blog más interactivo del mundo',
             'id':usuario.id
@@ -163,13 +185,17 @@ def cambiar_contraseña():
         }
         return jsonify(res)
 
-@app.route('/usuario/password/',methods=['PUT'])
+
+@app.route('/usuario/password',methods=['PUT'])
 def cambiar_contraseña2():
     correo=request.json['correo']
     contraseña=request.json['contraseña']
+    sal=bcrypt.gensalt()
     usuario = Usuario.query.filter_by(correo=correo).first()
     if(usuario):
-        usuario.contraseña=contraseña
+        hashed = bcrypt.hashpw(contraseña.encode(),sal)
+        usuario.contraseña=hashed
+        print(usuario.contraseña)
         db.session.commit()
         res={
             'success':'El password se ha cambiado correctamente'
@@ -181,14 +207,18 @@ def cambiar_contraseña2():
         }
         return jsonify(res)
 
+
 @app.route('/blog',methods=["POST"])
 def crear_blog():
     title=request.json['title']
-    description=request.json['description']
+    cuerpo=request.json['cuerpo']
     id_usuario=request.json['id_usuario']
+    id_categoria=request.json['id_categoria']
+    es_publico=request.json['es_publico']
+    now = date.today()
     usuario = Usuario.query.get(id_usuario)
     if(usuario):
-        nuevo_blog=Blog(title,description,id_usuario)
+        nuevo_blog=Blog(title,cuerpo,es_publico,now,id_usuario,id_categoria)
         db.session.add(nuevo_blog)
         db.session.commit()
         res={
@@ -200,43 +230,50 @@ def crear_blog():
         }
     return jsonify(res)
 
-@app.route('/blog',methods=['GET'])
+
+
+@app.route('/blog/buscar',methods=['GET'])
 def obtener_blog():
-    id = request.args.get('id','')
-    obtener_blogs=Blog.query.filter_by(id=id).one()
-    result=blog_schema.dump(obtener_blogs)  
-    return jsonify(result)
-
-@app.route('/entrada/',methods=['GET'])
-def obtener_entradas():
-    id_blog = request.args.get('id_blog','')
-    obtener_entradas=Entrada.query.filter_by(id_blog=id_blog).all()
-    result=entradas_schema.dump(obtener_entradas)
-    return jsonify(result)
-
-@app.route('/entrada',methods=['POST'])
-def crear_entradas():
-    title=request.json['title']
-    content=request.json['content']
-    id_usuario=request.json['id_usuario']
-    id_blog=request.json['id_blog']
-    nueva_entrada=Entrada(title,content,id_usuario,id_blog)
-    db.session.add(nueva_entrada)
-    db.session.commit()
-    res={
-        'success':'Entrada creada correctamente'
-    }
+    title = request.args.get('title','')
+    search = "%{}%".format(title)
+    obtener_blog = Blog.query.filter(Blog.title.like(search)).first()
+    if(obtener_blog):
+        return blog_schema.jsonify(obtener_blog)
+    else:
+        res={
+            'error':'No se ha pódido encontrar ninguna entrada con ese titulo'
+        }
     return jsonify(res)
 
-@app.route('/entrada/actualizar/',methods=['PUT'])
-def actualizar_entrada():
+
+
+@app.route('/blog',methods=['GET'])
+def obtener_blogs_publicos():
+    obtener_blogs_publicos=Blog.query.filter(Blog.es_publico==True).all()
+    result=blogs_schema.dump(obtener_blogs_publicos)
+    return jsonify(result)
+
+@app.route('/blog/privados',methods=['GET'])
+def obtener_blogs_privados():
+    id_usuario = request.args.get('id_blog','')
+    obtener_blogs_privados=Blog.query.filter(Blog.es_publico==False and Blog.id_usuario==id_usuario).all()
+    result=blogs_schema.dump(obtener_blogs_privados)
+    return jsonify(result)
+
+
+@app.route('/blog/actualizar',methods=['PUT'])
+def actualizar_blog():
     id=request.json['id']
     title=request.json['title']
-    content=request.json['content']
-    entrada = Entrada.query.get(id)
-    if(entrada):
-        entrada.title=title
-        entrada.content=content
+    cuerpo=request.json['cuerpo']
+    id_categoria=request.json['id_categoria']
+    es_publico=request.json['es_publico']
+    blog = Blog.query.get(id)
+    if(blog):
+        blog.title=title
+        blog.cuerpo=cuerpo
+        blog.id_categoria=id_categoria
+        blog.es_publico=es_publico
         db.session.commit()
         res={
             'success':'Entrada actualizada'
@@ -248,37 +285,27 @@ def actualizar_entrada():
     
     return jsonify(res)
 
-@app.route('/entrada/eliminar/',methods=['DELETE'])
+
+@app.route('/entrada/eliminar',methods=['DELETE'])
 def eliminar_entrada():
     id=request.json['id']
-    entrada=Entrada.query.get(id)
-    db.session.delete(entrada)
+    blog=Blog.query.get(id)
+    db.session.delete(blog)
     db.session.commit()
-    return entrada_schema.jsonify(entrada)
+    return "Blog Eliminado con exito"
 
-@app.route('/entrada/buscar/',methods=['GET'])
-def buscar_entrada():
-    title = request.args.get('title','')
-    search = "%{}%".format(title)
-    obtener_entrada = Entrada.query.filter(Entrada.title.like(search)).first()
-    if(obtener_entrada):
-        return entrada_schema.jsonify(obtener_entrada)
-    else:
-        res={
-            'error':'No se ha pódido encontrar ninguna entrada con ese titulo'
-        }
-    return jsonify(res)
 
 @app.route('/usuario/comentario',methods=['POST'])
 def crear_comentario():
     comentario=request.json['comentario']
     id_usuario=request.json['id_usuario']
-    id_entrada=request.json['id_entrada']
+    id_blog=request.json['id_blog']
+    now = date.today()
     usuario = Usuario.query.get(id_usuario)
     if(usuario):
-        entrada = Entrada.query.get(id_entrada)
-        if(entrada):
-            nuevo_comentario=Comentarios(comentario,id_usuario,id_entrada)
+        blog = Blog.query.get(id_blog)
+        if(blog):
+            nuevo_comentario=Comentarios(comentario,id_usuario,id_blog,now)
             db.session.add(nuevo_comentario)
             db.session.commit()
             res={
@@ -293,11 +320,12 @@ def crear_comentario():
             'error':'No hay ningun usuario creado'
         }
     return jsonify(res)
-    
+
+
 @app.route('/usuario/comentario/',methods=['GET'])
 def obtener_comentarios():
-    id_entrada = request.args.get('id_entrada','')
-    obtener_coments=Comentarios.query.filter_by(id_entrada=id_entrada).all()
+    id_blog = request.args.get('id_blog','')
+    obtener_coments=Comentarios.query.filter_by(id_blog=id_blog).all()
     result=comentarios_schema.dump(obtener_coments)
     return jsonify(result)
     
