@@ -6,10 +6,13 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from flask_cors import CORS
 from datetime import date
+import jwt
 import bcrypt
+import yagmail 
 app = Flask(__name__)
-CORS(app)
 
+
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/web'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -124,28 +127,33 @@ def crear_usuario():
     apellido=request.json['apellido']
     contraseña=request.json['contraseña']
     nomUsuario=request.json['nomUsuario']
-    print(correo)
-    print(nombre)
-    print(apellido)
-    print(contraseña)
-    print(nomUsuario)
     sal=bcrypt.gensalt()
     contraseña=contraseña.encode()
     hashed = bcrypt.hashpw(contraseña,sal)
-    print(sal,hashed)
     estado_activacion=False;
     now = date.today()
     usuario = Usuario.query.filter_by(correo=correo).first()
+    user=Usuario.query.filter_by(nomUsuario=nomUsuario).first()
     if(usuario):
         res={
         'error':'el usuario con ese correo ya ha sido creado'
+        }
+    elif(user):
+        res={
+        'error':'El nickname ya esta en uso ya ha sido creado'
         }
     else:
         nuevo_usuario=Usuario(nombre,apellido,correo,hashed,nomUsuario,estado_activacion,now)
         db.session.add(nuevo_usuario)
         db.session.commit()
+        encoded_jwt = jwt.encode({'name': nombre,'email':correo}, 'secret', algorithm='HS256')
+        link="http://localhost:4200/user/validate/{flink}".format(flink=encoded_jwt.decode())
+        contents= "Ingresa a este link para validar el correo {flink}".format(flink = link)
+        yag=yagmail.SMTP(user='pruebamintic2022@gmail.com',password='Jmd12345678')
+        yag.send(to=correo,subject='Validación Cuenta',contents=contents)
         res={
-            'success':'usuario creado correctamente'
+            'success':'usuario creado correctamente',
+            'mensaje':'Revisa tu correo para hacer la activación de tu cuenta'
         }
     return jsonify(res) 
 
@@ -153,20 +161,28 @@ def crear_usuario():
 def login_usuario():
     correo=request.json['correo']
     contraseña=request.json['contraseña']
-    usuario = Usuario.query.filter_by(correo=correo).one()
+    usuario = Usuario.query.filter_by(correo=correo).first()
     if(usuario):
-        if(bcrypt.checkpw(contraseña.encode(), usuario.contraseña.encode())):
-            res={
-            'success':'Bienvenido al Sistema de blog más interactivo del mundo',
-            'id':usuario.id
-            }
+        if(usuario.estado_activacion==True):
+            if(bcrypt.checkpw(contraseña.encode(), usuario.contraseña.encode())):
+                encoded_jwt = jwt.encode({'id':usuario.id}, 'secret', algorithm='HS256')
+                token=encoded_jwt.decode()
+                res={
+                'success':'Bienvenido al Sistema de blog más interactivo del mundo',
+                'id':usuario.id,
+                'token':token
+                }
+            else:
+                res={
+                    'error':'La contraseña no  coincide'
+                }
         else:
             res={
-                'error':'La contraseña no  coincide'
+                'error':'La cuenta no se encuentra activada'
             }
     else:
         res={
-        'error':'el usuario con ese correo no existe'
+        'error':'El usuario con ese correo no existe'
         }
     return jsonify(res)
 
@@ -195,7 +211,6 @@ def cambiar_contraseña2():
     if(usuario):
         hashed = bcrypt.hashpw(contraseña.encode(),sal)
         usuario.contraseña=hashed
-        print(usuario.contraseña)
         db.session.commit()
         res={
             'success':'El password se ha cambiado correctamente'
@@ -255,10 +270,16 @@ def obtener_blogs_publicos():
 
 @app.route('/blog/privados',methods=['GET'])
 def obtener_blogs_privados():
-    id_usuario = request.args.get('id_blog','')
+    id_usuario = request.args.get('id_usuario','')
     obtener_blogs_privados=Blog.query.filter(Blog.es_publico==False and Blog.id_usuario==id_usuario).all()
     result=blogs_schema.dump(obtener_blogs_privados)
-    return jsonify(result)
+    if(result):
+        return jsonify(result)
+    else:
+        res={
+            'error':'No tienes blogs'
+        }
+        return jsonify(res)
 
 
 @app.route('/blog/actualizar',methods=['PUT'])
@@ -328,6 +349,22 @@ def obtener_comentarios():
     obtener_coments=Comentarios.query.filter_by(id_blog=id_blog).all()
     result=comentarios_schema.dump(obtener_coments)
     return jsonify(result)
-    
+
+@app.route('/user/verify',methods=['POST'])
+def validar_token():
+    jwts=request.json['token']
+    desjwt=jwt.decode(jwts, 'secret', algorithms=['HS256'])
+    correo=desjwt['email']
+    usuario = Usuario.query.filter_by(correo=correo).first()
+    if(usuario):
+        usuario.estado_activacion=True
+        db.session.commit()
+        return jsonify(desjwt)
+    else:
+        res={
+            'error':'no existe el usuario'
+        }
+        return jsonify(res)
+
 if __name__ == "__main__":
     app.run(debug=True)
