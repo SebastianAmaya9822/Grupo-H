@@ -136,7 +136,7 @@ def crear_usuario():
     user=Usuario.query.filter_by(nomUsuario=nomUsuario).first()
     if(usuario):
         res={
-        'error':'el usuario con ese correo ya ha sido creado'
+        'error':'El usuario con ese correo ya ha sido creado'
         }
     elif(user):
         res={
@@ -191,13 +191,17 @@ def cambiar_contraseña():
     correo=request.json['correo']
     usuario = Usuario.query.filter_by(correo=correo).first()
     if(usuario):
+        link="http://localhost:4200/user/change/password2"
+        contents= "Ingresa a este link para cambiar la contraseña {flink}".format(flink = link)
+        yag=yagmail.SMTP(user='pruebamintic2022@gmail.com',password='Jmd12345678')
+        yag.send(to=correo,subject='Cambiar Contraseña',contents=contents)
         res={
         'success':'Cambiando el password'
         }
         return jsonify(res)
     else:
         res={
-        'error':'el usuario con ese correo no existe'
+        'error':'El usuario con ese correo no existe'
         }
         return jsonify(res)
 
@@ -354,9 +358,12 @@ def obtener_comentarios():
 def validar_token():
     jwts=request.json['token']
     desjwt=jwt.decode(jwts, 'secret', algorithms=['HS256'])
+
     correo=desjwt['email']
     usuario = Usuario.query.filter_by(correo=correo).first()
+    print(usuario)
     if(usuario):
+        print('hola')
         usuario.estado_activacion=True
         db.session.commit()
         return jsonify(desjwt)
@@ -365,6 +372,5 @@ def validar_token():
             'error':'no existe el usuario'
         }
         return jsonify(res)
-
 if __name__ == "__main__":
     app.run(debug=True)
