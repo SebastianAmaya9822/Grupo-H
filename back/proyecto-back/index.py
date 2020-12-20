@@ -1,4 +1,4 @@
-from enum import unique
+from operator import and_
 from flask import Flask,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -55,13 +55,13 @@ class Categoria(db.Model):
 
 db.create_all()
 
-class EntradaSchema(ma.Schema):
+class CategoriaSchema(ma.Schema):
     class Meta:
         fields = ('id', 'tipo')
 
 
-entrada_schema = EntradaSchema()
-entradas_schema = EntradaSchema(many=True)
+categoria_schema = CategoriaSchema()
+categorias_schema = CategoriaSchema(many=True)
 
 class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -251,12 +251,12 @@ def crear_blog():
 
 
 
-@app.route('/blog/buscar',methods=['GET'])
+@app.route('/blog/buscar/',methods=['GET'])
 def obtener_blog():
     title = request.args.get('title','')
     search = "%{}%".format(title)
     obtener_blog = Blog.query.filter(Blog.title.like(search)).first()
-    if(obtener_blog):
+    if(obtener_blog and obtener_blog.es_publico==True):
         return blog_schema.jsonify(obtener_blog)
     else:
         res={
@@ -268,14 +268,15 @@ def obtener_blog():
 
 @app.route('/blog',methods=['GET'])
 def obtener_blogs_publicos():
-    obtener_blogs_publicos=Blog.query.filter(Blog.es_publico==True).all()
+    id_usuario = int(request.args.get('id_usuario',''))
+    obtener_blogs_publicos=Blog.query.filter(Blog.id_usuario!=id_usuario or Blog.es_publico==True).all()
     result=blogs_schema.dump(obtener_blogs_publicos)
     return jsonify(result)
 
 @app.route('/blog/privados',methods=['GET'])
 def obtener_blogs_privados():
     id_usuario = request.args.get('id_usuario','')
-    obtener_blogs_privados=Blog.query.filter(Blog.es_publico==False and Blog.id_usuario==id_usuario).all()
+    obtener_blogs_privados=Blog.query.filter( Blog.id_usuario==id_usuario).all()
     result=blogs_schema.dump(obtener_blogs_privados)
     if(result):
         return jsonify(result)
@@ -313,14 +314,17 @@ def actualizar_blog():
 
 @app.route('/entrada/eliminar',methods=['DELETE'])
 def eliminar_entrada():
-    id=request.json['id']
+    id = int(request.args.get('id',''))
     blog=Blog.query.get(id)
     db.session.delete(blog)
     db.session.commit()
-    return "Blog Eliminado con exito"
+    res={
+        'success':'Blog Eliminado con exito'
+    }
+    return jsonify(res)
 
 
-@app.route('/usuario/comentario',methods=['POST'])
+@app.route('/usuario/comentario/',methods=['POST'])
 def crear_comentario():
     comentario=request.json['comentario']
     id_usuario=request.json['id_usuario']
@@ -358,12 +362,10 @@ def obtener_comentarios():
 def validar_token():
     jwts=request.json['token']
     desjwt=jwt.decode(jwts, 'secret', algorithms=['HS256'])
-
     correo=desjwt['email']
     usuario = Usuario.query.filter_by(correo=correo).first()
     print(usuario)
     if(usuario):
-        print('hola')
         usuario.estado_activacion=True
         db.session.commit()
         return jsonify(desjwt)
@@ -372,5 +374,24 @@ def validar_token():
             'error':'no existe el usuario'
         }
         return jsonify(res)
+
+@app.route('/category',methods=['GET'])
+def obtener_categorias():
+    categoria = db.session.query(Categoria).all()
+    categ=categorias_schema.dump(categoria)
+    return jsonify(categ)
+
+@app.route('/category',methods=['POST'])
+def crear_categorias():
+    tipo=request.json['tipo']
+    obtener_categorias=Categoria.query.filter( Categoria.tipo==tipo).first()
+    if(obtener_categorias):
+        return jsonify(obtener_categorias)
+    else :
+        res={
+            'error':'No se puede crear esa categoria'
+        }
+        return jsonify(res)
+
 if __name__ == "__main__":
     app.run(debug=True)
