@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/web'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://j9kKOJBTfJ:OJpLWKYoAn@remotemysql.com/j9kKOJBTfJ'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -278,14 +278,7 @@ def obtener_blogs_privados():
     id_usuario = request.args.get('id_usuario','')
     obtener_blogs_privados=Blog.query.filter( Blog.id_usuario==id_usuario).all()
     result=blogs_schema.dump(obtener_blogs_privados)
-    if(result):
-        return jsonify(result)
-    else:
-        res={
-            'error':'No tienes blogs'
-        }
-        return jsonify(res)
-
+    return jsonify(result)
 
 @app.route('/blog/actualizar',methods=['PUT'])
 def actualizar_blog():
